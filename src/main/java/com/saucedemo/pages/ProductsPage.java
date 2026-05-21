@@ -51,4 +51,13 @@ public class ProductsPage extends BasePage {
         click(logOutButton);
     }
 
+    public int getCartBadgeCount() {
+        try {
+            WebElement badge = driver.findElement(By.xpath("//a[@data-test='shopping-cart-link']//span[@data-test='shopping-cart-badge']"));
+            String badgeText = getText(badge);
+            return Integer.parseInt(badgeText.trim());
+        } catch (Exception e) {
+            return 0;
+        }
+    }
 }

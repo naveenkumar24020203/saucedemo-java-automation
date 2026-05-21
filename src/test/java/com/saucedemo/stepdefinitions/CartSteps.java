@@ -41,4 +41,11 @@ public class CartSteps {
     public void iShouldNotSeeInTheCart(String productName) {
         Assert.assertFalse(cartPage().isProductInCart(productName), "Product should have been removed from cart");
     }
+
+    @Then("cart badge count should be {string}")
+    public void cartBadgeCountShouldBe(String expectedCount) {
+        int actualCount = productsPage().getCartBadgeCount();
+        int expected = Integer.parseInt(expectedCount);
+        Assert.assertEquals(actualCount, expected, "Cart badge count mismatch");
+    }
 }

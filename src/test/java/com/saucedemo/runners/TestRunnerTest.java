@@ -14,7 +14,7 @@ import org.testng.annotations.Listeners;
         },
         monochrome = true,
         publish = false
-        // tags = "@logout"
+        // tags = "@cart"
 )
 @Listeners({com.saucedemo.utils.RetryListener.class})
 public class TestRunnerTest extends AbstractTestNGCucumberTests {

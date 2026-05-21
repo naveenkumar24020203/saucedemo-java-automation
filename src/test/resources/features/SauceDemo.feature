@@ -45,3 +45,12 @@ Feature: SauceDemo sample flows
     Then I should see the products page
     When I logout from the application
     Then I should see the login page
+
+  Scenario: Verify cart badge count updates correctly
+    Given I open the SauceDemo login page
+    When I login with valid credentials
+    Then I should see the products page
+    When I add "Sauce Labs Backpack" to cart
+    Then cart badge count should be "1"
+    When I add "Sauce Labs Bike Light" to cart
+    Then cart badge count should be "2"
