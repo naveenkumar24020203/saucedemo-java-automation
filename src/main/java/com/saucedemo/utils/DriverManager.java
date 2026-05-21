@@ -42,7 +42,9 @@ public final class DriverManager {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--window-size=1920,1080");
         options.addArguments("--disable-notifications");
-        options.addArguments("--disable-features=PasswordLeakDetection");
+        options.addArguments("--disable-save-password-bubble");
+        options.addArguments("--disable-password-generation");
+        options.addArguments("--disable-features=PasswordManagerOnboarding,PasswordLeakDetection");
         if (headless) {
             options.addArguments("--headless=new");
         }

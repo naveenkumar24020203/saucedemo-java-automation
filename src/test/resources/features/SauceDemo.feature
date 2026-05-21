@@ -38,3 +38,4 @@ Feature: SauceDemo sample flows
     Given I open the SauceDemo login page
     When I login with username "locked_out_user" and password "secret_sauce"
     Then I should see an error message "Sorry, this user has been locked out."
+
