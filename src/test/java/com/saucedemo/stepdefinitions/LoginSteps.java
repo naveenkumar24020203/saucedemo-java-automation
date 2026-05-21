@@ -21,6 +21,8 @@ public class LoginSteps {
     @Given("I open the SauceDemo login page")
     public void iOpenTheSauceDemoLoginPage() {
         loginPage().openUrl(ConfigReader.get("BASE_URL", "https://www.saucedemo.com"));
+        loginPage().isLoginButtonDisplayed();
+        loginPage().isLoginFormDisplayed();
     }
 
     @When("I login with valid credentials")
@@ -42,6 +44,18 @@ public class LoginSteps {
     public void i_login_with_username_and_password(String string, String string2) {
             loginPage().login(string, string2);
 }
+    @When("I logout from the application")
+    public void i_logout_from_the_application() {
+        productsPage().openMenu();
+        productsPage().clickLogOut();
+        loginPage().isLoginButtonDisplayed();
+        loginPage().isLoginFormDisplayed();
+    }
+    @Then("I should see the login page")
+    public void i_should_see_the_login_page() {
+        loginPage().isLoginButtonDisplayed();
+        loginPage().isLoginFormDisplayed();
+    }
 
 }
 

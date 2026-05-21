@@ -21,6 +21,9 @@ public class LoginPage extends BasePage {
     @FindBy(css = ".error-message-container h3")
     private WebElement errorMessage;
 
+    @FindBy(xpath = "//div[@class='login-box']")
+    private WebElement loginBox;
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -38,6 +41,10 @@ public class LoginPage extends BasePage {
 
     public boolean isLoginButtonDisplayed() {
         return loginButton.isDisplayed();
+    }
+
+    public boolean isLoginFormDisplayed() {
+        return loginBox.isDisplayed();
     }
 
     public String getErrorMessage() {

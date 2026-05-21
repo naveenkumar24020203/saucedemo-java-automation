@@ -37,19 +37,28 @@ public final class DriverManager {
         }
     }
 
-    private static WebDriver createChromeDriver(boolean headless) {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--window-size=1920,1080");
-        options.addArguments("--disable-notifications");
-        options.addArguments("--disable-save-password-bubble");
-        options.addArguments("--disable-password-generation");
-        options.addArguments("--disable-features=PasswordManagerOnboarding,PasswordLeakDetection");
-        if (headless) {
-            options.addArguments("--headless=new");
-        }
-        return new ChromeDriver(options);
+private static WebDriver createChromeDriver(boolean headless) {
+    WebDriverManager.chromedriver().setup();
+
+    ChromeOptions options = new ChromeOptions();
+
+    options.addArguments("--window-size=1920,1080");
+    options.addArguments("--disable-notifications");
+    options.addArguments("--disable-save-password-bubble");
+    options.addArguments("--disable-password-generation");
+    options.addArguments("--disable-features=PasswordManagerOnboarding,PasswordLeakDetection");
+
+    // Required for GitHub Actions Linux runner
+    options.addArguments("--no-sandbox");
+    options.addArguments("--disable-dev-shm-usage");
+    options.addArguments("--remote-allow-origins=*");
+
+    if (headless) {
+        options.addArguments("--headless=new");
     }
+
+    return new ChromeDriver(options);
+}
 
     private static WebDriver createFirefoxDriver(boolean headless) {
         WebDriverManager.firefoxdriver().setup();

@@ -13,6 +13,12 @@ public class ProductsPage extends BasePage {
     @FindBy(css = ".title")
     private WebElement productsTitle;
 
+    @FindBy(xpath = "//button[@id='react-burger-menu-btn']")
+    private WebElement menuButton;
+    
+    @FindBy(xpath = "//a[@id='logout_sidebar_link']")
+    private WebElement logOutButton;
+
     public ProductsPage(WebDriver driver) {
         super(driver);
     }
@@ -36,4 +42,13 @@ public class ProductsPage extends BasePage {
     public void openCart() {
         click(cartLink);
     }
+
+    public void openMenu() {
+        click(menuButton);
+    }
+
+    public void clickLogOut() {
+        click(logOutButton);
+    }
+
 }
