@@ -29,7 +29,13 @@ public class LoginPage extends BasePage {
     }
 
     public void openUrl(String url) {
-        driver.get(url);
+        String baseUrl = System.getenv("BASE_URL");
+
+        if (baseUrl == null || baseUrl.isEmpty()) {
+            baseUrl = url;
+        }
+
+        driver.get(baseUrl);
         waitForPageLoad();
     }
 
