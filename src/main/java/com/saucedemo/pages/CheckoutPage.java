@@ -18,6 +18,9 @@ public class CheckoutPage extends BasePage {
     @FindBy(id = "continue")
     private WebElement continueButton;
 
+    @FindBy(xpath = "//div[@class='error-message-container error']")
+    private WebElement errorMessage;
+
     public CheckoutPage(WebDriver driver) {
         super(driver);
     }
@@ -27,5 +30,9 @@ public class CheckoutPage extends BasePage {
         type(lastNameInput, lastName);
         type(postalCodeInput, postalCode);
         click(continueButton);
+    }
+
+    public String getErrorMessage() {
+        return getText(errorMessage);
     }
 }

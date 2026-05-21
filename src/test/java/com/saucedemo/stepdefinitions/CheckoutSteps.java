@@ -47,4 +47,12 @@ public class CheckoutSteps {
     public void iShouldSeeTheOrderConfirmation() {
     Assert.assertTrue(orderConfirmationPage().getConfirmationHeader().equalsIgnoreCase("THANK YOU FOR YOUR ORDER!"),"Order confirmation header mismatch");
     }
+
+
+    @Then("I should see checkout error {string}")
+    public void iShouldSeeCheckoutError(String expectedMessage) {
+        String actual = checkoutPage().getErrorMessage();
+        Assert.assertTrue(actual != null && actual.toLowerCase().contains(expectedMessage.toLowerCase()),
+                "Expected checkout error to contain: '" + expectedMessage + "' but was: '" + actual + "'");
+    }
 }

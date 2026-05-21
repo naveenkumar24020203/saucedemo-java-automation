@@ -34,6 +34,22 @@ Feature: SauceDemo sample flows
       | product               | firstName | lastName | postalCode |
       | Sauce Labs Bolt T-Shirt | John      | Smith    | 10001      |
 
+
+  Scenario: Verify checkout validation for empty fields
+    Given I open the SauceDemo login page
+    When I login with valid credentials
+    Then I should see the products page
+    When I add "<product>" to cart
+    And I open the cart
+    Then I should see "<product>" in the cart
+    When I checkout with "<firstName>" "<lastName>" "<postalCode>"
+    Then I should see checkout error "<message>"
+
+    Examples:
+      | product               | firstName | lastName | postalCode | message |
+      | Sauce Labs Bolt T-Shirt |       |     |       | first name is required  |
+
+
   Scenario: Login with invalid credentials
     Given I open the SauceDemo login page
     When I login with username "locked_out_user" and password "secret_sauce"
@@ -54,3 +70,22 @@ Feature: SauceDemo sample flows
     Then cart badge count should be "1"
     When I add "Sauce Labs Bike Light" to cart
     Then cart badge count should be "2"
+
+
+  Scenario: Verify multiple products can be added to cart
+    Given I open the SauceDemo login page
+    When I login with valid credentials
+    Then I should see the products page
+    When I add "Sauce Labs Backpack" to cart
+    And I add "Sauce Labs Bike Light" to cart
+    And I open the cart
+    Then I should see "Sauce Labs Backpack" in the cart
+    And I should see "Sauce Labs Bike Light" in the cart
+
+  Scenario: Verify cart persists after navigating pages
+    Given I open the SauceDemo login page
+    When I login with valid credentials
+    Then I should see the products page
+    When I add "Sauce Labs Backpack" to cart
+    And I open the cart
+    Then cart badge count should be "1"
